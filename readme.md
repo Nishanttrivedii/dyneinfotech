@@ -34,11 +34,17 @@ cd "dyne infotech assignment"
 
 ### 2. Install dependencies
 ```bash
+# Install backend dependencies
+cd backend
+npm install
+
+# Install frontend dependencies
+cd ../frontend
 npm install
 ```
 
 ### 3. Configure environment variables
-Create a `.env` file in the root directory:
+Create or edit the `.env` file in the `backend` directory:
 ```env
 PORT=3000
 DB_HOST=localhost
@@ -56,6 +62,7 @@ CREATE DATABASE product_reviews;
 
 ### 5. Setup database tables and sample data
 ```bash
+cd backend
 npm run setup:db
 ```
 
@@ -66,17 +73,27 @@ This command will:
 
 ## 🏃 Running the Application
 
-### Development mode (with auto-reload)
+### Backend (Development mode with auto-reload)
 ```bash
+cd backend
 npm run dev
 ```
 
-### Production mode
+### Backend (Production mode)
 ```bash
+cd backend
 npm start
 ```
 
-Server will start on: `http://localhost:3000`
+Backend server will start on: `http://localhost:3000`
+
+### Frontend (Development mode)
+```bash
+cd frontend
+npm run dev
+```
+
+Frontend will start on: `http://localhost:5173`
 
 ## 📚 API Documentation
 
