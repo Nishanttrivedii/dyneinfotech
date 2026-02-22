@@ -277,7 +277,7 @@ ISC
 
 ## 👨‍💻 Author
 
-Dyne Infotech Assignment
+Nishant Trivedi
 
 ---
 
