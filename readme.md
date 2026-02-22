@@ -1,284 +1,205 @@
-# Product Ratings and Review Analytics Dashboard
+Product Ratings & Review Analytics Dashboard
 
-A comprehensive backend API for analyzing product ratings, reviews, and customer feedback trends built with Node.js, Express, and PostgreSQL.
+This is a backend project I built to analyze product ratings and customer reviews. It’s made using Node.js, Express, and PostgreSQL.
 
-## 🚀 Features
+The main idea was to create APIs that can:
 
-- ✅ RESTful API with Node.js & Express
-- ✅ PostgreSQL database with optimized schema
-- ✅ CSV/Excel file import for bulk data upload
-- ✅ Comprehensive analytics endpoints:
-  - Dashboard overview with key metrics
-  - Category-wise rating distribution
-  - Product performance analysis
-  - Review trends over time
-  - Review engagement metrics
-  - Top and worst performing products
-- ✅ Advanced filtering, sorting, and search
-- ✅ Proper error handling and validation
-- ✅ Sample data included for testing
+Store products, categories, and reviews
 
-## 📋 Prerequisites
+Import data from CSV/Excel
 
-- Node.js (v18 or higher)
-- PostgreSQL (v14 or higher)
-- npm or yarn
+Show analytics like top products, rating trends, etc.
 
-## 🔧 Installation
+What This Project Does
 
-### 1. Clone the repository
-```bash
+REST APIs built using Express
+
+PostgreSQL database with proper relationships
+
+Import reviews using CSV or Excel
+
+Dashboard analytics (overall stats, trends, category-wise ratings)
+
+Filtering, sorting and searching for products & reviews
+
+Proper validation and error handling
+
+It’s mainly focused on backend logic and analytics.
+
+Tech Stack
+
+Node.js
+
+Express.js
+
+PostgreSQL
+
+multer (for file upload)
+
+csv-parser & xlsx (for reading files)
+
+dotenv
+
+cors
+
+How to Run This Project
+1. Clone the repo
 git clone <your-repo-url>
-cd "dyne infotech assignment"
-```
+cd dyne-infotech-assignment
+2. Install dependencies
 
-### 2. Install dependencies
-```bash
-# Install backend dependencies
+Backend:
+
 cd backend
 npm install
 
-# Install frontend dependencies
+Frontend (if needed):
+
 cd ../frontend
 npm install
-```
+3. Setup environment variables
 
-### 3. Configure environment variables
-Create or edit the `.env` file in the `backend` directory:
-```env
+Create a .env file inside backend:
+
 PORT=3000
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=product_reviews
 DB_USER=postgres
-DB_PASSWORD=your_password_here
-```
+DB_PASSWORD=your_password
+4. Create Database
 
-### 4. Create PostgreSQL database
-Open pgAdmin or psql and create the database:
-```sql
+Open PostgreSQL and run:
+
 CREATE DATABASE product_reviews;
-```
-
-### 5. Setup database tables and sample data
-```bash
-cd backend
+5. Setup Tables
 npm run setup:db
-```
 
-This command will:
-- Create all necessary tables (categories, products, reviews)
-- Set up foreign key relationships
-- Insert sample data for testing
+This will:
 
-## 🏃 Running the Application
+Create tables (categories, products, reviews)
 
-### Backend (Development mode with auto-reload)
-```bash
-cd backend
+Add sample data
+
+Running the Server
+
+Development:
+
 npm run dev
-```
 
-### Backend (Production mode)
-```bash
-cd backend
+Production:
+
 npm start
-```
 
-Backend server will start on: `http://localhost:3000`
+Backend runs on:
 
-### Frontend (Development mode)
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend will start on: `http://localhost:5173`
-
-## 📚 API Documentation
-
-### Base URL
-```
 http://localhost:3000
-```
+Important API Endpoints
 
-### Quick Start Endpoints
+Health check:
 
-#### 1. Check API Health
-```
 GET /health
-```
 
-#### 2. Get API Documentation
-```
-GET /
-```
+Dashboard analytics:
 
-#### 3. View Dashboard Analytics
-```
 GET /api/analytics/dashboard
-```
 
-#### 4. Import Data from CSV/Excel
-```
+Category-wise ratings:
+
+GET /api/analytics/categories/ratings
+
+Top & worst products:
+
+GET /api/analytics/products/top-worst
+
+Import CSV/Excel:
+
 POST /api/upload/import
-Content-Type: multipart/form-data
-Body: { file: your_file.csv }
-```
+Database Structure (Simple Overview)
+Categories
 
-### Complete API Reference
+id
 
-See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for detailed documentation of all endpoints.
+name
 
-## 📊 Available Analytics Endpoints
+description
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/analytics/dashboard` | GET | Overall dashboard analytics |
-| `/api/analytics/categories` | GET | All categories with stats |
-| `/api/analytics/categories/ratings` | GET | Category-wise ratings |
-| `/api/analytics/products` | GET | Products with filters |
-| `/api/analytics/products/top-worst` | GET | Top & worst products |
-| `/api/analytics/products/:id/performance` | GET | Product details |
-| `/api/analytics/reviews` | GET | Reviews with filters |
-| `/api/analytics/reviews/trends` | GET | Review trends over time |
-| `/api/analytics/reviews/engagement` | GET | Engagement metrics |
+created_at
 
-## 📁 Project Structure
+Products
 
-```
-dyne infotech assignment/
-├── src/
-│   ├── config/
-│   │   └── database.js          # Database connection
-│   ├── controllers/
-│   │   ├── analyticsController.js  # Analytics logic
-│   │   └── uploadController.js     # File upload logic
-│   ├── middleware/
-│   │   ├── errorHandler.js      # Error handling
-│   │   └── validation.js        # Input validation
-│   ├── models/
-│   │   ├── schema.js            # Database schema
-│   │   └── setup.js             # Database setup script
-│   ├── routes/
-│   │   ├── analyticsRoutes.js   # Analytics routes
-│   │   └── uploadRoutes.js      # Upload routes
-│   └── index.js                 # Main server file
-├── uploads/                     # Temporary file storage
-├── .env                         # Environment variables
-├── .gitignore                   # Git ignore rules
-├── package.json                 # Dependencies
-├── sample_import.csv            # Sample CSV for testing
-├── API_DOCUMENTATION.md         # Complete API docs
-└── readme.md                    # This file
-```
+id
 
-## 🧪 Testing the API
+name
 
-### Using the Sample CSV
-A sample CSV file is provided in `sample_import.csv`. You can use it to test the import functionality:
+description
 
-```bash
-# Using curl
+price
+
+category_id
+
+Reviews
+
+id
+
+product_id
+
+customer_name
+
+rating (1–5)
+
+review_text
+
+created_at
+
+Products belong to categories.
+Reviews belong to products.
+
+Features I Focused On
+
+Clean schema design with foreign keys
+
+Transaction-based import (if something fails, rollback happens)
+
+Flexible filtering for products and reviews
+
+Analytics like:
+
+Average rating
+
+Total reviews
+
+Category performance
+
+Review trends over time
+
+Sample Testing
+
+There is a sample_import.csv file included.
+
+You can test import using curl:
+
 curl -X POST http://localhost:3000/api/upload/import \
   -F "file=@sample_import.csv"
-```
 
-### Using Thunder Client (VS Code Extension)
-1. Install Thunder Client extension
-2. Create a new request
-3. Method: POST
-4. URL: `http://localhost:3000/api/upload/import`
-5. Body: Form data, add field `file`, type File, select CSV
+Or use Postman / Thunder Client.
 
-### Using Postman
-1. Create POST request to `http://localhost:3000/api/upload/import`
-2. Select Body → form-data
-3. Add key `file`, change type to File
-4. Upload your CSV/Excel file
+Why I Built This
 
-## 📊 Database Schema
+This was an assignment project to demonstrate:
 
-### Categories
-- `id` - Unique identifier
-- `name` - Category name (unique)
-- `description` - Category description
-- `created_at` - Timestamp
+Backend API design
 
-### Products
-- `id` - Unique identifier
-- `name` - Product name
-- `description` - Product description
-- `price` - Product price
-- `category_id` - Foreign key to categories
-- `created_at` - Timestamp
+Database relationships
 
-### Reviews
-- `id` - Unique identifier
-- `product_id` - Foreign key to products
-- `customer_name` - Reviewer name
-- `rating` - Rating (1-5 stars)
-- `review_text` - Review content
-- `created_at` - Timestamp
+Real-world analytics queries
 
-## 🎯 Key Features Implemented
+File handling
 
-### 1. Data Import
-- Support for CSV and Excel files
-- Automatic duplicate handling
-- Data validation before import
-- Transaction-based import (all or nothing)
+Proper error handling
 
-### 2. Analytics
-- Real-time dashboard metrics
-- Category-wise analysis
-- Product performance tracking
-- Review trends and patterns
-- Engagement metrics
+Main focus was backend logic and clean structure.
 
-### 3. Filtering & Search
-- Filter products by category, rating, price
-- Search in product names and descriptions
-- Sort by multiple fields
-- Flexible query parameters
-
-### 4. Error Handling
-- Comprehensive error messages
-- Validation for all inputs
-- Database transaction rollback on errors
-- Graceful error responses
-
-## 🛠️ Technologies Used
-
-- **Backend**: Node.js, Express.js
-- **Database**: PostgreSQL
-- **File Processing**: 
-  - multer (file uploads)
-  - csv-parser (CSV parsing)
-  - xlsx (Excel parsing)
-- **Environment**: dotenv
-- **CORS**: cors middleware
-
-## 📝 Scripts
-
-```bash
-npm start        # Start production server
-npm run dev      # Start development server with auto-reload
-npm run setup:db # Setup database tables and sample data
-```
-
-## 🤝 Contributing
-
-This is an assignment project. For any questions or improvements, please reach out.
-
-## 📄 License
-
-ISC
-
-## 👨‍💻 Author
+Author
 
 Nishant Trivedi
-
----
-
-**Built with ❤️ using Node.js, Express, and PostgreSQL**
