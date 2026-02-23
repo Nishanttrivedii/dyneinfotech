@@ -369,14 +369,13 @@ export const getCategories = asyncHandler(async (req, res) => {
     SELECT 
       c.id,
       c.name,
-      c.description,
       COUNT(p.id) as product_count,
       COUNT(r.id) as review_count,
       ROUND(AVG(r.rating)::numeric, 2) as average_rating
     FROM categories c
     LEFT JOIN products p ON c.id = p.category_id
     LEFT JOIN reviews r ON p.id = r.product_id
-    GROUP BY c.id, c.name, c.description
+    GROUP BY c.id, c.name
     ORDER BY c.name
   `);
 
