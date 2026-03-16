@@ -1,0 +1,127 @@
+//modified
+
+
+/* ===============================
+   FINAL CLEAN CSS (Stable Version)
+   - Layout unchanged
+   - .metas stacked using flex
+   - Add to Cart default: GREY
+   - Add to Cart hover: PURPLE
+   - No half-fill animation
+   =============================== */
+
+body {
+    background: #e3e2e4 !important;
+}
+
+/* ---------------- HEADER ---------------- */
+.apus-header .e-con-inner { 
+    max-width: 100%; 
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* ---------------- PRODUCT CARD LAYOUT ---------------- */
+.product-block.grid .grid-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.product-block.grid .block-inner {
+    display: contents;
+}
+
+.product-block.grid figure.image { order: 1; }
+.product-block.grid .wishlist-compare-wrapper { order: 2; }
+.product-block.grid .metas { order: 3; }
+.product-block.grid .add-to-cart-quickview-wrapper { order: 4; margin-top: 12px; }
+
+/* Stack title + price */
+.metas.clearfix {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+}
+
+/* ---------------- ADD TO CART BUTTON (MAIN GRID) ---------------- */
+
+.product-block.grid 
+.add-cart a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 18px !important;
+    text-align: center !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+    background: #bdbdbd !important; /* DEFAULT GREY */
+    border: 0 !important;
+    transition: background 200ms ease !important;
+}
+
+.product-block.grid 
+.add-cart a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart:hover {
+    background: #9A7EEB !important; /* HOVER PURPLE */
+}
+
+/* ---------------- WISHLIST POPUP BUTTON ---------------- */
+
+.woosw-items a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart.product_type_simple {
+    background: #bdbdbd !important; /* DEFAULT GREY */
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #fff !important;
+    transition: background 200ms ease;
+}
+
+.woosw-items a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart.product_type_simple:hover {
+    background: #9A7EEB !important; /* HOVER PURPLE */
+}
+
+/* ---------------- SINGLE PRODUCT PAGE ---------------- */
+
+.woocommerce div.product form.cart .button {
+    background: #9A7EEB !important;
+    border-radius: 8px;
+    padding: 10px 30px !important;
+    color: #fff !important;
+}
+
+/* ---------------- GENERAL STYLING ---------------- */
+
+.product-block.grid .woosw-btn {
+    margin-bottom: 10px;
+    background: #9A7EEB;
+    color: #fff;
+}
+
+h4.wp-block-heading,
+h2.widget-title {
+    background: black;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+aside.sidebar.sidebar-left.ps-container {
+    border: 1px solid #999999;
+}
+
+.wc-block-product-categories-list,
+.product-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 420px) {
+    .product-block.grid .add-cart a.button {
+        padding: 10px 12px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* ===============================
+   END OF FILE
+   =============================== */

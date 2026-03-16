@@ -1,38 +1,46 @@
-import express from "express"
-import cors from "cors"
-import dotenv from "dotenv"
-import pool from "./config/database.js";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./database/connection.js";
+import Category from "./models/Category.js";
+
 dotenv.config();
 
 const app = express();
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/health", async (req,res)=>{
-    try{
-      const  result = await pool.query("SELECT NOW()")
-    res.json({
-        status:"healthy",
-        database:"connected",
-        timestamp:result.rows[0].now
-    });
-    
-    }
-
-    catch(err){
-        res.status(500).json({
-            status:"unhealthy",
-        database:"disconnected",
-        error:err.message
-        })
-    }
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({
+    status: "healthy",
+    timestamp: new Date()
+  });
 });
 
-const PORT= process.env.PORT || 3000;
+app.post("/categories", async()=>{
+    try{
+    const {name, description} = req.body
+    const category = await Category.create({
+        name, description
+    })
 
-app.listen(PORT,()=>{
-console.log("server is running")
-
+    res.status(201).json({
+        success: true,
+        data:category
+    })
+    }
+    catch(error){
+    res.status(400).json({
+        success
+    })    }
 })
+const PORT = process.env.PORT || 3000;
+
+// Start server
+app.listen(PORT, async () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+  await connectDB()
+});
